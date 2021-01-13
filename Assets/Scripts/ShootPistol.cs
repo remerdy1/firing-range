@@ -9,6 +9,7 @@ public class ShootPistol : MonoBehaviour
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
+    public Transform barrelLocation;
 
 
     // Update is called once per frame
@@ -20,17 +21,22 @@ public class ShootPistol : MonoBehaviour
     }
 
     void Shoot(){
-        muzzleFlash.Play();
+        MuzzleFlash();
         RaycastHit hit;
 
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range)){
             Debug.Log(hit.transform.name);
         }
-
+        
         Target target  = hit.transform.GetComponent<Target>();
 
         if(target.tag == "Target"){
             target.TakeDamage(damage);
         }
+    }
+
+    void MuzzleFlash(){
+        muzzleFlash.transform.position = barrelLocation.position;
+        muzzleFlash.Play();
     }
 }
