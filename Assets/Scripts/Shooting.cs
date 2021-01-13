@@ -20,9 +20,10 @@ public class Shooting : MonoBehaviour
     public RaycastHit rayHit;
     public ParticleSystem muzzleFlash;
     public Transform barrelLocation;
+    AudioSource gunshot;
 
     //Animator
-    public Animator pistolAnim;
+    Animator pistolAnim;
 
     // UI
     public Text ammoUI;
@@ -31,6 +32,7 @@ public class Shooting : MonoBehaviour
         bulletsLeft = magazineSize;
         readyToShoot = true;
         pistolAnim = GetComponent<Animator>();
+        gunshot = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -59,6 +61,7 @@ public class Shooting : MonoBehaviour
     void Shoot(){
         
         readyToShoot = false;
+        gunshot.Play(0);
 
         //Spread
         float x = Random.Range(-spread, spread);
@@ -93,14 +96,14 @@ public class Shooting : MonoBehaviour
 
     void Reload(){
         reloading = true;
-        pistolAnim.SetBool("Reloading", reloading);
+        pistolAnim.SetBool("Reloading", true);
         Invoke("ReloadFinished", reloadTime);
     }
 
     void ReloadFinished(){
         bulletsLeft = magazineSize;
         reloading = false;
-        pistolAnim.SetBool("Reloading", reloading);
+        pistolAnim.SetBool("Reloading", false);
     }
 
     void MuzzleFlash(){
