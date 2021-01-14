@@ -16,23 +16,27 @@ public class Shooting : MonoBehaviour
     bool shooting, readyToShoot, reloading;
 
     //Reference
-    public Camera fpsCam;
-    public RaycastHit rayHit;
+    Camera fpsCam;
+    RaycastHit rayHit;
     public ParticleSystem muzzleFlash;
     public Transform barrelLocation;
     AudioSource gunshot;
 
     //Animator
-    Animator pistolAnim;
+    Animator reloadAnim;
 
     // UI
-    public Text ammoUI;
+    Text ammoUI;
 
     private void Awake() {
         bulletsLeft = magazineSize;
         readyToShoot = true;
-        pistolAnim = GetComponent<Animator>();
+        reloadAnim = GetComponent<Animator>();
         gunshot = GetComponent<AudioSource>();
+        // Main Camera
+        fpsCam = Camera.main;
+        // Ammo text
+        ammoUI = GameObject.Find("UI").transform.GetChild(1).GetComponent<Text>();
     }
 
     private void Update() {
@@ -96,14 +100,14 @@ public class Shooting : MonoBehaviour
 
     void Reload(){
         reloading = true;
-        pistolAnim.SetBool("Reloading", true);
+        reloadAnim.SetBool("Reloading", true);
         Invoke("ReloadFinished", reloadTime);
     }
 
     void ReloadFinished(){
         bulletsLeft = magazineSize;
         reloading = false;
-        pistolAnim.SetBool("Reloading", false);
+        reloadAnim.SetBool("Reloading", false);
     }
 
     void MuzzleFlash(){
