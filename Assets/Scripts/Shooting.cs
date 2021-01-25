@@ -87,10 +87,10 @@ public class Shooting : MonoBehaviour
         bulletsLeft--;
         bulletsShot--;
 
-        Invoke("ResetShot", timeBetweenShots);
+        Invoke("ResetShot", timeBetweenShooting);
 
         if(bulletsShot > 0 && bulletsLeft > 0){
-            Invoke("Shoot", timeBetweenShooting);
+            Invoke("Shoot", timeBetweenShots);
         }
     }
 
