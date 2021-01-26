@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
     public int damage;
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold;
+    public bool allowButtonHold, isEquipped;
     int bulletsLeft, bulletsShot;
 
     // bools
@@ -29,6 +29,8 @@ public class Shooting : MonoBehaviour
     Text ammoUI;
 
     private void Awake() {
+        isEquipped = false;
+
         bulletsLeft = magazineSize;
         readyToShoot = true;
         reloadAnim = GetComponent<Animator>();
@@ -46,20 +48,23 @@ public class Shooting : MonoBehaviour
     }
 
     private void MyInput(){
-        if(allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        if(isEquipped == true){
+            if(allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+            else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading){
-            Debug.Log("Reloading");
-            Reload();
-            };
+            if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading){
+                Debug.Log("Reloading");
+                Reload();
+                };
 
-        //Shoot
-        if(readyToShoot && shooting && !reloading && bulletsLeft > 0){
-            bulletsShot = bulletsPerTap;
-            MuzzleFlash();
-            Shoot();
-        } 
+            //Shoot
+            if(readyToShoot && shooting && !reloading && bulletsLeft > 0){
+                bulletsShot = bulletsPerTap;
+                MuzzleFlash();
+                Shoot();
+            }   
+        }
+
     }
 
     void Shoot(){
