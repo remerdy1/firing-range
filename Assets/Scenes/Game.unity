@@ -5332,10 +5332,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2016601920}
   - component: {fileID: 2016601922}
-  - component: {fileID: 2016601921}
   m_Layer: 0
   m_Name: Table Cam
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5354,14 +5353,6 @@ Transform:
   m_Father: {fileID: 36796534}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
---- !u!81 &2016601921
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016601919}
-  m_Enabled: 1
 --- !u!20 &2016601922
 Camera:
   m_ObjectHideFlags: 0
@@ -5490,6 +5481,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7981028660426323482, guid: 8b82bba2c98561c4a9a5aea99c573b0f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d90a8faf6fb9540b084ef2825cc3a5dc,
+        type: 3}
     - target: {fileID: 7981028660457202993, guid: 8b82bba2c98561c4a9a5aea99c573b0f,
         type: 3}
       propertyPath: m_LocalPosition.y
