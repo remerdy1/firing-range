@@ -29,7 +29,7 @@ public class Shooting : MonoBehaviour
     Text ammoUI;
 
     private void Awake() {
-        isEquipped = false;
+        isEquipped = true;
 
         bulletsLeft = magazineSize;
         readyToShoot = true;
@@ -44,7 +44,9 @@ public class Shooting : MonoBehaviour
     private void Update() {
         MyInput();
         // Update UI
-        ammoUI.text = $"{bulletsLeft}/{magazineSize}";
+        if(isEquipped == true){
+          ammoUI.text = $"{bulletsLeft}/{magazineSize}";  
+        }
     }
 
     private void MyInput(){

@@ -291,7 +291,7 @@ MonoBehaviour:
   magazineSize: 4
   bulletsPerTap: 1
   allowButtonHold: 0
-  isEquipped: 0
+  isEquipped: 1
   muzzleFlash: {fileID: 7615728164157312649}
   barrelLocation: {fileID: 7742108732222738594}
 --- !u!65 &3699300855425692503
