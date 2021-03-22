@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class ConsoleScript : MonoBehaviour
 {
     public Text spawnText;
+    public GameObject robot;
     public Animator robotAnim;
     // Start is called before the first frame update
     void Start()
     {
         spawnText.enabled = false;
+        robot.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,6 +27,9 @@ public class ConsoleScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other) {
         if(Input.GetKeyDown(KeyCode.F)){
+            // Spawn bot
+            robot.SetActive(true);
+            // Play animation
             robotAnim.SetTrigger("fPressed?");
         }
     }
