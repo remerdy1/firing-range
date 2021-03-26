@@ -2731,11 +2731,12 @@ MonoBehaviour:
         networkSync: 0
         value: {fileID: 0}
       - useVariable: 1
-        name: spawnPoint
+        name: ak-47
         tooltip: 
         showInInspector: 0
         networkSync: 0
-        value: {fileID: 0}
+        value: {fileID: 4672105512921775944, guid: 80cf119408040b54baf5b9d6f738b7c3,
+          type: 3}
       objectVariables: []
       materialVariables: []
       textureVariables: []
@@ -2808,6 +2809,10 @@ MonoBehaviour:
   mainCam: {fileID: 809708420}
   fps: {fileID: 1886862712}
   akPrefab: {fileID: 4672105512921775944, guid: 80cf119408040b54baf5b9d6f738b7c3,
+    type: 3}
+  pistolPrefab: {fileID: 5776646432660272503, guid: d447ff677f097fb45ad298b42adb137e,
+    type: 3}
+  shotgunPrefab: {fileID: 1752062746733106995, guid: e68884899a09a084a85677a3edbc2925,
     type: 3}
 --- !u!1001 &369951651
 PrefabInstance:
@@ -3569,6 +3574,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7058692054675867424}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &536548931
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536548930}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &540679273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,7 +4004,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19106
+  m_Name: pb_Mesh17478
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4687,7 +4705,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19090
+  m_Name: pb_Mesh17462
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4986,7 +5004,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18862
+  m_Name: pb_Mesh17232
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6630,7 +6648,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19238
+  m_Name: pb_Mesh17612
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13207,7 +13225,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19198
+  m_Name: pb_Mesh17570
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

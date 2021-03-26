@@ -14,6 +14,8 @@ public class SelectionTable : MonoBehaviour
     bool weaponSelect = false;
 
     public GameObject akPrefab;
+    public GameObject pistolPrefab;
+    public GameObject shotgunPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -54,17 +56,23 @@ public class SelectionTable : MonoBehaviour
                 RaycastHit hit;
                 if( Physics.Raycast( ray, out hit, 100 )){
                     string[] gunArray = {"Pistol", "Ak_47", "Shotgun", "Sniper Rifle"};
-                    int pos = Array.IndexOf(gunArray, hit.transform.tag);
-                    Debug.Log(hit.transform.tag + pos);
+                    string gunTag = hit.transform.tag;
+                    int pos = Array.IndexOf(gunArray, gunTag);
+                    Debug.Log(gunTag + pos);
                     if(pos > -1){
                         
                         // Weapon disapear from table
                         hit.transform.gameObject.SetActive(false);
                         //TODO Equip weapon
-                        switch(hit.transform.tag){
+                        switch(gunTag){
                             case "Ak_47":
-                                GameObject gun = Instantiate(akPrefab, new Vector3(0,0,0), new Quaternion(0,0,0,0));
-                                gun.transform.parent = mainCam.transform;
+                                equipGun(new Vector3(0.34f, -0.24f, 0.67f), akPrefab);
+                                break;
+                            case "Pistol":
+                                equipGun(new Vector3(0.66f, -0.85f, 0.93f), pistolPrefab);
+                                break;
+                            case "Shotgun":
+                                equipGun(new Vector3(0.34f, -0.24f, 0.67f), shotgunPrefab);
                                 break;
                         }
                         // Leave table
@@ -103,6 +111,15 @@ public class SelectionTable : MonoBehaviour
         fps.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
 
         weaponSelect = false;
+    }
+
+    //! Shotgun needs to rotate 90 degrees on Y
+    //! Dumb af
+    private void equipGun(Vector3 position, GameObject prefab){
+        mainCam.enabled = true;
+        GameObject gun = Instantiate(prefab, position, new Quaternion(0,90,0,0));
+        gun.transform.parent = mainCam.transform;
+        gun.transform.localPosition = position;
     }
 }
 
