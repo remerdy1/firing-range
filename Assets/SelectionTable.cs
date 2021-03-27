@@ -9,7 +9,10 @@ public class SelectionTable : MonoBehaviour
 {
     // UI
     public Text selectText; // "Press F to select weapon"
+    public GameObject buttons;
     public Button akButton;
+    public Button pistolButton;
+    public Button shotgunButton;
 
     // CAMERA
     public Camera tableCam; 
@@ -17,7 +20,9 @@ public class SelectionTable : MonoBehaviour
     
     // FPS Controller 
     public FirstPersonController fps;
+    public PlayerController playerScript;
     
+    // Is the table being looked at?
     bool weaponSelect = false;
 
     // PREFABS
@@ -27,17 +32,15 @@ public class SelectionTable : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        // Hide text
+    {        
+        akButton.onClick.AddListener(equipAk);
+        pistolButton.onClick.AddListener(equipPistol);
+        shotgunButton.onClick.AddListener(equipShotgun);
+
+        // Hide UI
         selectText.enabled = false;
+        buttons.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     private void OnTriggerEnter(Collider other) {
         // Show text
@@ -50,45 +53,10 @@ public class SelectionTable : MonoBehaviour
         }
 
         if(weaponSelect == true){
-            // F to cancel 
+            // E to cancel 
             if(Input.GetKeyDown(KeyCode.E)){
                 disableTable();
             } 
-
-            // Check object pressed 
-            if(Input.GetMouseButtonDown(0)){
-                // Get weapon clicked
-                //! Ray is currently colliding with other objects 
-                Debug.Log("Click");
-                Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if( Physics.Raycast( ray, out hit, 100 )){
-                    string[] gunArray = {"Pistol", "Ak_47", "Shotgun", "Sniper Rifle"};
-                    string gunTag = hit.transform.tag;
-                    int pos = Array.IndexOf(gunArray, gunTag);
-                    Debug.Log(gunTag + pos);
-                    if(pos > -1){
-                        
-                        // Weapon disapear from table
-                        hit.transform.gameObject.SetActive(false);
-                        //TODO Equip weapon
-                        switch(gunTag){
-                            case "Ak_47":
-                                equipGun(new Vector3(0.34f, -0.24f, 0.67f), akPrefab);
-                                break;
-                            case "Pistol":
-                                equipGun(new Vector3(1f, -0.98f, 1.3f), pistolPrefab);
-                                break;
-                            case "Shotgun":
-                                equipGun(new Vector3(0.34f, -0.24f, 0.67f), shotgunPrefab);
-                                break;
-                        }
-                        // Leave table
-                        disableTable();
-
-                    }
-                } 
-            }
         }
     }
 
@@ -96,6 +64,7 @@ public class SelectionTable : MonoBehaviour
         selectText.enabled = false;
     }
 
+    // Table 
     private void enableTable(){
         // Switch Camera to table
         tableCam.enabled = true;
@@ -106,6 +75,8 @@ public class SelectionTable : MonoBehaviour
         Cursor.visible = true;
         // Change text
         selectText.text = "Press E To Cancel";
+        // Show UI
+        buttons.SetActive(true);
 
         weaponSelect = true;
     }
@@ -117,21 +88,39 @@ public class SelectionTable : MonoBehaviour
         tableCam.enabled = false;
         mainCam.enabled = true;
         fps.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
-
+        buttons.SetActive(false);
         weaponSelect = false;
     }
 
+    // Equip weapons
     private void equipGun(Vector3 position, GameObject prefab){
         mainCam.enabled = true;
         GameObject gun = Instantiate(prefab, position, prefab.transform.rotation);
         gun.transform.parent = mainCam.transform;
         gun.transform.localPosition = position;
+        playerScript.isHoldingWeapon = true;
+    }
+
+
+    //TODO replace old weapon with new weapon
+    public void equipAk(){
+        if(playerScript.isHoldingWeapon == false){
+            equipGun(new Vector3(0.34f, -0.24f, 0.67f), akPrefab);
+        }
+        disableTable();  
+    }
+
+    public void equipShotgun(){
+        if(playerScript.isHoldingWeapon == false){
+            equipGun(new Vector3(0.34f, -0.24f, 0.67f), shotgunPrefab);
+        }
+        disableTable();
+    }
+
+    public void equipPistol(){
+        if(playerScript.isHoldingWeapon == false){
+            equipGun(new Vector3(1f, -0.98f, 1.3f), pistolPrefab);
+        }
+        disableTable();
     }
 }
-
-
-//TODO Only select 1 weapon
-//TODO Can only select guns 
-//TODO Fix gun collisions 
-//TODO Set gun to equipped 
-
