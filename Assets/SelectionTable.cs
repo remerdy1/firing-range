@@ -7,12 +7,20 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class SelectionTable : MonoBehaviour
 {
+    // UI
     public Text selectText; // "Press F to select weapon"
-    public Camera tableCam;
+    public Button akButton;
+
+    // CAMERA
+    public Camera tableCam; 
     public Camera mainCam;
+    
+    // FPS Controller 
     public FirstPersonController fps;
+    
     bool weaponSelect = false;
 
+    // PREFABS
     public GameObject akPrefab;
     public GameObject pistolPrefab;
     public GameObject shotgunPrefab;
@@ -50,7 +58,7 @@ public class SelectionTable : MonoBehaviour
             // Check object pressed 
             if(Input.GetMouseButtonDown(0)){
                 // Get weapon clicked
-                //! Ray is currently colliding with player 
+                //! Ray is currently colliding with other objects 
                 Debug.Log("Click");
                 Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -69,7 +77,7 @@ public class SelectionTable : MonoBehaviour
                                 equipGun(new Vector3(0.34f, -0.24f, 0.67f), akPrefab);
                                 break;
                             case "Pistol":
-                                equipGun(new Vector3(0.66f, -0.85f, 0.93f), pistolPrefab);
+                                equipGun(new Vector3(1f, -0.98f, 1.3f), pistolPrefab);
                                 break;
                             case "Shotgun":
                                 equipGun(new Vector3(0.34f, -0.24f, 0.67f), shotgunPrefab);
@@ -113,11 +121,9 @@ public class SelectionTable : MonoBehaviour
         weaponSelect = false;
     }
 
-    //! Shotgun needs to rotate 90 degrees on Y
-    //! Dumb af
     private void equipGun(Vector3 position, GameObject prefab){
         mainCam.enabled = true;
-        GameObject gun = Instantiate(prefab, position, new Quaternion(0,90,0,0));
+        GameObject gun = Instantiate(prefab, position, prefab.transform.rotation);
         gun.transform.parent = mainCam.transform;
         gun.transform.localPosition = position;
     }
