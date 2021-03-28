@@ -20,7 +20,7 @@ public class TImer : MonoBehaviour
     {
         if (start)
         {
-        currentTime += 1 * Time.deltaTime;
+            currentTime += 1 * Time.deltaTime;
             timerText.text = Math.Round(currentTime, 2).ToString();
         }
     }

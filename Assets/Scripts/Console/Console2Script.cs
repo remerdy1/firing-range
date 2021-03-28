@@ -1,13 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Console2Script : MonoBehaviour
 {
+    // TIMER
     public Text startText; // "Press F to start"
     public Text timer;
     TImer timerScript;
+    GenerateBots generateBots;
 
     // Start is called before the first frame update
     void Start()
@@ -17,27 +20,33 @@ public class Console2Script : MonoBehaviour
         timer.enabled = false;
         // Reference timer script 
         timerScript = timer.GetComponent<TImer>();
+        generateBots = gameObject.GetComponent<GenerateBots>();
     }
 
-    // Enable start text on enter
     private void OnTriggerEnter(Collider other)
     {
+        // Enable start text on enter
         startText.enabled = true;
     }
 
-    // If f is pressed then start timer 
+    
     private void OnTriggerStay(Collider other)
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            // Start timer
             timer.enabled = true;
             timerScript.start = true;
+
+            // Generate bots
+            generateBots.Generate();
         }
     }
 
-    // Hide startText on exit
+    
     private void OnTriggerExit(Collider other)
     {
+        // Hide startText on exit
         startText.enabled = false;
     }
 }
