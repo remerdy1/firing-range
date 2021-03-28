@@ -32,7 +32,7 @@ public class Console2Script : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F)  && timerScript.start == false)
         {
             // Start timer
             timer.enabled = true;
