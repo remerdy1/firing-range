@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TImer : MonoBehaviour
 {
     float currentTime;
-    float startingTime;
+    float startingTime = 0;
     public Text timerText;
     public bool start = false;
 
