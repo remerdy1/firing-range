@@ -101,26 +101,33 @@ public class SelectionTable : MonoBehaviour
         playerScript.isHoldingWeapon = true;
     }
 
-
-    //TODO replace old weapon with new weapon
     public void equipAk(){
-        if(playerScript.isHoldingWeapon == false){
-            equipGun(new Vector3(0.34f, -0.24f, 0.67f), akPrefab);
+        if(playerScript.isHoldingWeapon == true){
+            GameObject equippedGun = mainCam.transform.GetChild(0).gameObject;
+            Destroy(equippedGun);
         }
+        
+        equipGun(new Vector3(0.34f, -0.24f, 0.67f), akPrefab);
         disableTable();  
     }
 
     public void equipShotgun(){
-        if(playerScript.isHoldingWeapon == false){
-            equipGun(new Vector3(0.34f, -0.24f, 0.67f), shotgunPrefab);
+        if(playerScript.isHoldingWeapon == true){
+            GameObject equippedGun = mainCam.transform.GetChild(0).gameObject;
+            Destroy(equippedGun);
         }
+        
+        equipGun(new Vector3(0.34f, -0.24f, 0.67f), shotgunPrefab);
         disableTable();
     }
 
     public void equipPistol(){
-        if(playerScript.isHoldingWeapon == false){
-            equipGun(new Vector3(1f, -0.98f, 1.3f), pistolPrefab);
+        if(playerScript.isHoldingWeapon == true){
+            GameObject equippedGun = mainCam.transform.GetChild(0).gameObject;
+            Destroy(equippedGun);
         }
+        
+        equipGun(new Vector3(1f, -0.98f, 1.3f), pistolPrefab);
         disableTable();
     }
 }
