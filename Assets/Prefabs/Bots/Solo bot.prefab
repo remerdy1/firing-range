@@ -292,8 +292,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2634385643143871494}
   - component: {fileID: 7058692054213050532}
+  - component: {fileID: -4788078995343703888}
+  - component: {fileID: 2634059995652006969}
   m_Layer: 0
-  m_Name: Robot Kyle (Solo)
+  m_Name: Solo bot
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,6 +336,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-4788078995343703888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356830402801323541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61062c66d57c2e48967a65710245d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+--- !u!65 &2634059995652006969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356830402801323541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3695885, y: 2.3460674, z: 1}
+  m_Center: {x: -0.07557932, y: 1.0196806, z: 7.852705e-17}
 --- !u!1 &1657173306047290322
 GameObject:
   m_ObjectHideFlags: 0
