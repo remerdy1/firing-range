@@ -24,6 +24,7 @@ public class SelectionTable : MonoBehaviour
     
     // Is the table being looked at?
     bool weaponSelect = false;
+    bool nearTable = false;
 
     // PREFABS
     public GameObject akPrefab;
@@ -42,26 +43,35 @@ public class SelectionTable : MonoBehaviour
         buttons.SetActive(false);
     }
 
+    void Update()
+    {
+        if (nearTable)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                enableTable();
+            }
+
+            if (weaponSelect == true)
+            {
+                // E to cancel 
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    disableTable();
+                }
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
         // Show text
         selectText.enabled = true;
-    }
-
-    private void OnTriggerStay(Collider other) {
-        if(Input.GetKeyDown(KeyCode.F)){
-            enableTable();
-        }
-
-        if(weaponSelect == true){
-            // E to cancel 
-            if(Input.GetKeyDown(KeyCode.E)){
-                disableTable();
-            } 
-        }
+        nearTable = true;
     }
 
     private void OnTriggerExit(Collider other) {
         selectText.enabled = false;
+        nearTable = false;
     }
 
     // Table 

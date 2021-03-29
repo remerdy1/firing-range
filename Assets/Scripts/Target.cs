@@ -7,6 +7,7 @@ public class Target : MonoBehaviour
     public float health = 50f;
 
     public GenerateBots generateBots;
+    public ConsoleScript consoleScript;
 
     public void TakeDamage(float damage){
         health -= damage;
@@ -21,6 +22,14 @@ public class Target : MonoBehaviour
     }
 
     private void OnDestroy() {
-        generateBots.botCount--;
+        if (generateBots)
+        {
+            generateBots.botCount--;
+        }
+        else
+        {
+            consoleScript.botCount--;
+        }
+        
     }
 }

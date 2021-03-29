@@ -79,10 +79,10 @@ public class Shooting : MonoBehaviour
         float y = Random.Range(-spread, spread);
 
         //Calculate direction with spread
-        Vector3 direction = fpsCam.transform.forward + new Vector3(x,y,0);
+        Vector3 direction = barrelLocation.transform.forward + new Vector3(x,y,0);
 
         //RayCast
-        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range)){
+        if (Physics.Raycast(barrelLocation.transform.position, direction, out rayHit, range)){
             Debug.Log(rayHit.collider.name);
 
             if(rayHit.collider.CompareTag("Target")){
