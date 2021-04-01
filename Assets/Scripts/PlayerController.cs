@@ -8,12 +8,13 @@ public class PlayerController : MonoBehaviour
     public float health = 100f;
 
     public bool isHoldingWeapon = false;
-    public Text pausedText;
+    public GameObject pausedUI;
+
     bool paused;
 
     private void Start() {
         paused = false;
-        pausedText.enabled = false;
+        pausedUI.SetActive(false);
     }
 
     private void Update() {
@@ -21,11 +22,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape) && !paused){
             paused = true;
             Time.timeScale = 0;
-            pausedText.enabled = true;
+            pausedUI.SetActive(true);
         }else if(Input.GetKeyDown(KeyCode.Escape) && paused){
             paused = false;
             Time.timeScale = 1;
-            pausedText.enabled = false;
+            pausedUI.SetActive(false);
         }
     }
 }

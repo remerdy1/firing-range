@@ -28,12 +28,11 @@ public class TImer : MonoBehaviour
             currentTime += 1 * Time.deltaTime;
             timerText.text = Math.Round(currentTime, 2).ToString();
         }
-
         if(generateBots.finishedGenerating && generateBots.botCount == 0){
             start = false;
             SaveData();
-            SceneManager.LoadScene("End Menu");
-        }
+            SceneManager.LoadScene("End Menu");;
+        } 
     }
 
     public void SaveData(){
