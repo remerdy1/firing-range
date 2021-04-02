@@ -9,12 +9,12 @@ public class Shooting : MonoBehaviour
     public int damage;
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold, isEquipped;
+    public bool allowButtonHold, isEquipped, reloading;
+
     int bulletsLeft, bulletsShot;
 
     // bools
-    bool shooting, readyToShoot, reloading;
-
+    bool shooting, readyToShoot;
     //Reference
     Camera fpsCam;
     RaycastHit rayHit;

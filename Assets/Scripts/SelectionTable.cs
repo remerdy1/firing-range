@@ -13,6 +13,7 @@ public class SelectionTable : MonoBehaviour
     public Button akButton;
     public Button pistolButton;
     public Button shotgunButton;
+    public Button sniperButton;
 
     // CAMERA
     public Camera tableCam; 
@@ -30,6 +31,7 @@ public class SelectionTable : MonoBehaviour
     public GameObject akPrefab;
     public GameObject pistolPrefab;
     public GameObject shotgunPrefab;
+    public GameObject sniperPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,7 @@ public class SelectionTable : MonoBehaviour
         akButton.onClick.AddListener(equipAk);
         pistolButton.onClick.AddListener(equipPistol);
         shotgunButton.onClick.AddListener(equipShotgun);
+        sniperButton.onClick.AddListener(equipSniper);
 
         // Hide UI
         selectText.enabled = false;
@@ -108,6 +111,7 @@ public class SelectionTable : MonoBehaviour
         GameObject gun = Instantiate(prefab, position, prefab.transform.rotation);
         gun.transform.parent = mainCam.transform;
         gun.transform.localPosition = position;
+        gun.transform.localRotation = new Quaternion(0, 0, 0, 0);
         playerScript.isHoldingWeapon = true;
     }
 
@@ -138,6 +142,16 @@ public class SelectionTable : MonoBehaviour
         }
         
         equipGun(new Vector3(1f, -0.98f, 1.3f), pistolPrefab);
+        disableTable();
+    }
+
+    public void equipSniper(){
+        if(playerScript.isHoldingWeapon == true){
+            GameObject equippedGun = mainCam.transform.GetChild(0).gameObject;
+            Destroy(equippedGun);
+        }
+        
+        equipGun(new Vector3(0.21f, -0.1449998f, 0.540f), sniperPrefab);
         disableTable();
     }
 }
